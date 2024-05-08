@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #ffffff, #fff0f0);
+  }
+
+.justify-text {
+    text-align: center;
+}
+
+.navbar-nav .nav-item.active .nav-link {
+    color: #111111 !important;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+.about-heading {
+    margin-bottom: 5px; 
+    font-size: 70px;
+}
+
+.meet-heading{
+    font-size: 50px;
+    color:#940C0C;
+}
+.banner-image {
+    max-width: 100%; /* Adjust as needed */
+    max-height: 100%; /* Adjust as needed */
+}
+.card-title{
+    color: #ffffff ;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+
+
+.box-1 {
+    text-align: center;
+    padding-top: 10%;
+    padding-bottom: 5%;
+    /* margin-inline-start: 15%;
+    margin-inline-end: 20%; */
+    margin-bottom: auto;
+    box-shadow: inset gray 0px 0px 60px -12px;
+
+    h1{
+        font-size: 100px; /* Adjust the value as needed */
+        font-weight: bold;
+    }
+}
+
+.box-2 {
+    text-align: center;
+    padding-top: 5%;
+    padding-bottom: 1%;
+    background-color:#f3efed;
+}
+
+.box-3 {
+    text-align: center;
+    padding-top: 10%;
+    padding-bottom: 5%;
+    margin-inline-start: 15%;
+    margin-inline-end: 20%;
+    margin-bottom: auto;
+}
+
+.card-title{
+    color: #000000 ;
+    font-weight:normal;
+    text-align: center;
+}
+
+.row {
+    margin-left: 4%;
+    margin-right: 4%;
+}
+
+.card {
+    border-radius: 10%;
+}
+
+.box-3 h1 {
+    font-size: 100px; /* Adjust the value as needed */
+    font-weight: bold;
+}
+
+.btn-outline-info {
+    width: 200px; /* Adjust the value as needed */
+    /* Other styles from Bootstrap */
+}
+

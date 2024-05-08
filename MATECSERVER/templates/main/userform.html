@@ -1,0 +1,65 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block title %}Barangay Bagna{% endblock %}
+{% block scripts %}
+<script src="{% static 'js/file_input.js'%}"></script>{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">{% endblock %}
+{% block content %}
+<main>
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100" style="padding-top: 70px;">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Form</h2>
+              <form enctype="multipart/form-data" action="/change-approval/{{benefit.id}}" method="post">
+                <div data-mdb-input-init class="form-outline mb-4">
+                  <h2>Form Type:</h2>
+                  <span>{{user_form.type}}</span>
+                </div>
+
+                <div data-mdb-input-init class="form-outline mb-4">
+                  <a href="{{user_form.file.url}} download">Download form</a>
+                </div>
+                
+                {% if request.user.is_superuser %}
+                <div data-mdb-input-init class="form-outline mb-4">
+                  <h2>Form Status:</h2>
+                  {% if user_form.type == "approved" %}
+                  <span class="badge badge-success">{{user_form.type}}</span>
+                  {% elif user_form.type == "denied" %}
+                  <span class="badge badge-danger">{{user_form.type}}</span>
+                  {% else user_form.type == "pending" %}
+                  <span class="badge badge-warning">{{user_form.type}}</span>
+                  {% endif %}
+                </div>
+                {% else %}
+                <div data-mdb-input-init class="form-outline mb-4">
+                  <label class="form-label" for="form3Example4cdg">Status</label> <select id="form3Example4cdg"
+                    class="form-control form-control-lg">
+                    <option value="approved">Approved</option>
+                    <option value="pending">Pending</option>
+                    <option value="denied">Denied</option>
+                  </select>
+                </div>
+                {% endif %}
+
+                {% if request.user.is_superuser %}
+                <div class="d-flex justify-content-center">
+                  <button type="button" data-mdb-button-init data-mdb-ripple-init
+                    class="btn btn-secondary btn-block btn-lg gradient-custom-4 text-body">Submit</button>
+                </div>
+                {% endif %}
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+  </body>
+</main>
+{% endblock %}

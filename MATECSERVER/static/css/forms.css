@@ -1,0 +1,49 @@
+h2{
+    text-align: center;
+    font-weight: bold;
+}
+
+h6{
+    padding: 10px;
+}
+
+div.panel2{
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        font-family: Arial, sans-serif;
+        text-align: justify;
+}
+
+
+    .row{
+        margin: 30px;
+    }
+
+
+button{
+    padding: 5px;
+    margin: 1px;
+    color: white;
+    background-color: rgb(44, 119, 145);
+}
+
+div.Forms{
+    text-align: center;
+}
+
+table {
+
+    table-layout: auto;
+    width: 800px;
+    text-align: center;
+    font-size: 18px;
+  }
+  
+  td, th {
+    color:black;
+    border: 1px solid rgb(133, 117, 117);
+    text-align: center;
+    padding: 8px;
+  }

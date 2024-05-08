@@ -1,14 +1,15 @@
+from django.http import FileResponse, HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import auth
 from . import interface
 MAIN_PATH = 'main/'
 TEMPLATES = {
             'home':'index.html',
-            'contact':'contact.html',
-            'about':'about.html',
             'login':'login.html',
+            'contacts':'contacts.html',
+            'about':'about.html',
             'signup':'signup.html',
-            'downloads':'downloads.html',
+            'downloadable_templates':'NONE.html',
             'announcement':'announcement.html',
             'announcements':'announcements.html',
             'announcement_add_form':'announcement_add_form.html',
@@ -26,10 +27,10 @@ def home(request):
     return render(request, MAIN_PATH + TEMPLATES['home'])
 
 def forbidden(request):
-    return render(request, "forbidden")
+    return HttpResponse("Forbidden")
 
 def not_found(request):
-    return render(request, "Not found 404 :(")
+    return HttpResponse("Not found 404 :(")
 
 def login(request):
     if request.user.is_authenticated:
@@ -69,13 +70,25 @@ def signup(request):
         else:
             return render(request, MAIN_PATH + TEMPLATES['signup'])
 
+def downloadable_templates(request):
+    return render(request, MAIN_PATH + TEMPLATES['downloadable_templates'])
+
+def contacts(request):
+    return render(request, MAIN_PATH + TEMPLATES['contacts'])
+
+def about(request):
+    return render(request, MAIN_PATH + TEMPLATES['about'])
+
 def get_announcement(request, id: int = None):
     context = {'announcement':interface.get_announcement(id)}
     return render(request, MAIN_PATH + TEMPLATES['announcement'], context = context)
 
-def get_all_announcement(request):
+def get_all_announcements(request):
     context = {'announcements':interface.get_all_announcement(10)}
     return render(request, MAIN_PATH + TEMPLATES['announcements'], context = context)
+
+# def download(request, path):
+#     return FileResponse(open(path, 'rb'))
 
 def delete_announcement(request, id: int = None):
     if not (request.user.is_superuser and request.user.is_authenticated):
@@ -134,7 +147,7 @@ def get_project(request, id: int = None):
     context = {'project':interface.get_project(id)}
     return render(request, MAIN_PATH + TEMPLATES['project'], context = context)
 
-def get_all_project(request):
+def get_all_projects(request):
     context = {'projects':interface.get_all_project(10)}
     return render(request, MAIN_PATH + TEMPLATES['projects'], context = context)
 
@@ -223,6 +236,17 @@ def delete_userform(request, id: int = None):
     else:
         return redirect('/')
     
+def change_userform_status(request, id:int):
+    if not (request.user.is_superuser and request.user.is_authenticated):
+        return redirect('/forbidden')
+    
+    if (id == None or not interface.check_form_exists(id)):
+        return redirect('/not-found')
+    
+    if (request.method == "POST"):
+        interface.change_approval_form(id, request.POST['status'])
+    return redirect(f'/get-userform/{id}')
+
 def add_userform(request):
     if not (request.user.is_superuser and request.user.is_authenticated):
         return redirect('/forbidden')
@@ -238,3 +262,19 @@ def add_userform(request):
         return redirect('/user-forms/')
     else:
         return render(request, MAIN_PATH + TEMPLATES['userform_add_form'])
+    
+def get_pending_userforms(request):
+    if not (request.user.is_superuser and request.user.is_authenticated):
+        return redirect('/forbidden')
+    
+    context = {'forms':interface.get_all_forms()}
+
+    return render(request, MAIN_PATH + TEMPLATES['userforms'], context = context)
+
+def get_my_userforms(request):
+    if not request.user.is_authenticated:
+        return redirect('/forbidden')
+    
+    context = {'forms':interface.get_user_forms(request.user)}
+
+    return render(request, MAIN_PATH + TEMPLATES['userforms'], context = context)

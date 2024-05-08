@@ -1,0 +1,70 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block title %}Barangay Bagna{% endblock %}
+{% block styles %}<link rel="stylesheet" href="{% static 'css/home.css' %}">{% endblock %}
+{% block content %}
+    <main>
+        <header>
+            <img src="{% static '/assets/banner.png' %}" alt="Your Banner Image" class="banner-image">
+        </header>
+        <div class="box-1">
+            
+            <h1 style="font-weight: bold;" >Get Your Forms Faster</h1> <br>
+            <h5> This website aims to streamline the application process for barangay certificates and forms, reducing queue times and improving accessibility for residents.</h5>
+        </div>
+        
+        <div class="box-2">
+            <h1 style="font-weight: bold;" >Features We Deliver</h1> <br>
+            <div class="row">
+                <div class="col-md-4 mb-5 ">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title"><strong>Track Your Requests</strong></h4>   
+                        </div>
+                      <div class="card-body d-flex justify-content-center">
+                        <img src="{% static '/assets/bell.png' %}" style="width: 180px; height: 180px;" alt="Team Member 1" class="card-img-top">
+                      </div>
+                        <div class="card-body">
+                            <a class="btn btn-outline-info ml-2" href="/my-forms/">Track</a> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title"><strong>Get to Know Us</strong></h4>   
+                        </div>
+                      <div class="card-body d-flex justify-content-center">
+                        <img src="{% static '/assets/know.png' %}" style="width: 180px; height: 180px;" alt="Team Member 1" class="card-img-top">
+                      </div>
+                        <div class="card-body">
+                            <a class="btn btn-outline-info ml-2" href="/about/">Know</a> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title"><strong>Check Announcements</strong></h4>   
+                        </div>
+                      <div class="card-body d-flex justify-content-center">
+                        <img src="{% static '/assets/announce.png' %}" style="width: 180px; height: 180px;" alt="Team Member 1" class="card-img-top">
+                      </div>
+                        <div class="card-body">
+                            <a class="btn btn-outline-info ml-2" href="/announcements/">Ask</a> 
+                        </div>
+                    </div>
+                </div>
+   
+            </div>
+
+         <div class="box-3">
+            
+                <h1 style="font-weight: bold;" >Available Forms</h1> <br>
+                <h5> Click the button to see available forms</h5> <br>
+                <a class="btn btn-outline-info ml-5" href="/downloads/">Forms</a> 
+
+            </div>
+
+    </main>
+    {% endblock %}

@@ -1,0 +1,89 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block title %}Barangay Bagna{% endblock %}
+{% block styles %}<link rel="stylesheet" href="{% static 'css/about.css' %}">{% endblock %}
+{% block content %}
+    <main>
+        <div class="container">
+            <div class="panel1">
+                <h1>About Us</h1> 
+                <p>Bagna is a barangay in the city of Malolos, in the province of Bulacan. 
+                    Its population as determined by the 2020 Census was 4,947. This represented 1.89% of the total population of Malolos. 
+                    The household population of Bagna in the 2015 Census was 5,321 broken down into 1,165 households or an average of 4.57 members per household.
+                    The adjacent Barangays nearby are Barangay Atlag and Barangay Panasahan. Barangay Bagna has a size of 667,401 square meters and is approximately three (3) kilometers from the town of Malolos. 
+                    As an urban and coastal barangay, the barangay is known for its main product - the oyster (talaba).</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="panel1">
+                <h1>Active Barangay Officials</h1>
+                <table>
+                    <tr> 
+                        <td></td>
+                        <td> <img class="barangay-official-photo" src="{% static '/assets/punongbarangay.jpg' %}"> 
+                            <h4 class="official-name">INOCENCIO DC. VILLENA JR</h4>
+                            <h4 class="official-title"> Punong Barangay</h4>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td> <img class="barangay-official-photo" src="{% static '/assets/kagawad1.jpg' %}"> 
+                            <h4 class="official-name">RONALD E. VILLENA</h4>
+                            <h4 class="official-title">KAGAWAD</h4>
+                        </td>
+                        <td> </td>
+                        <td> <img class="barangay-official-photo" src="{% static '/assets/kagawad2.jpg' %}">
+                            <h4 class="official-name">JHAN JHAN A. RIVERA</h4>
+                            <h4 class="official-title">KAGAWAD</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> <img class="barangay-official-photo" src="{% static '/assets/kagawad3.jpg' %}">
+                            <h4 class="official-name">HERNANDO T. LIWANAG</h4>
+                            <h4 class="official-title">KAGAWAD</h4>
+                        </td>
+                        <td> </td>
+                        <td> <img class="barangay-official-photo kagawad4" src="{% static '/assets/kagawad4.jpg' %}">
+                            <h4 class="official-name">ALFREDO E. BEUNAVENTURA JR.</h4>
+                            <h4 class="official-title">KAGAWAD</h4>
+                        </td>
+                    </tr>
+                    <tr>                       
+                        <td> <img class="barangay-official-photo" src="{% static '/assets/kagawad5.jpg' %}">
+                            <h4 class="official-name">GIOVANNI C. TRILLANA</h4>
+                            <h4 class="official-title">KAGAWAD</h4>
+                        </td>
+                        <td> </td>
+                        <td> <img class="barangay-official-photo" src="{% static '/assets/kagawad6.jpg' %}">
+                            <h4 class="official-name">JANE F MARASIGAN</h4>
+                            <h4 class="official-title">KAGAWAD</h4>
+                        </td>                        
+                    </tr>
+                    <tr>
+                        <td> <img class="barangay-official-photo kagawad7" src="{% static '/assets/kagawad7.jpg' %}">
+                            <h4 class="official-name">PASCUAL B. ROBLES JR.</h4>
+                            <h4 class="official-title">KAGAWAD</h4>
+                        </td>
+                        <td> </td>
+                        <td> <img class="barangay-official-photo" src="{% static '/assets/skchairperson.jpg' %}">
+                            <h4 class="official-name">RENE BOY J. FERNANDO</h4>
+                            <h4 class="official-title"> SK CHAIRPERSON</h4>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td> <img class="barangay-official-photo" src="{% static '/assets/kalihim.jpg' %}">
+                            <h4 class="official-name">MA. MARITES R. AZUCENA</h4>
+                            <h4 class="official-title">KALIHIM</h4>
+                        </td>    
+                        <td> </td>                   
+                        <td> <img class="barangay-official-photo" src="{% static '/assets/ingatyaman.jpg' %}">
+                            <h4 class="official-name">ROMEO S. EVANGELISTA</h4>
+                            <h4 class="official-title">INGAT YAMAN</h4>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </main>
+    {% endblock %}

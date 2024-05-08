@@ -1,0 +1,32 @@
+.barangay-official-photo {
+    height: 205px;
+    width: 200px;
+    /* min-height: 205px;
+    min-height: 200px; */
+    display: block;
+    margin: 0 auto 5px;
+}
+td {
+    text-align: center;
+    vertical-align: top;
+}
+.kagawad4 {
+    max-width:205px;
+    max-height:190px
+}
+.kagawad7 {
+    max-width: 155px;
+    max-height: 205px;
+    padding:10px;
+}
+table {
+    text-align: center;
+}
+.official-name, .official-title{
+    text-align: center;
+    margin-bottom: 2px;
+}
+
+.official-title {
+    font-style: italic;
+}

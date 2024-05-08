@@ -74,13 +74,13 @@ def save_project(title, description, location, image, id = None):
         
     return temp
 
-def get_all_form(pending = True):
+def get_all_forms(pending = True):
     if pending:
         return Form.objects.filter(approval_status = "pending").order_by('-date_posted')
     else:
         return Form.objects.order_by('-date_posted')
         
-def get_user_form(user:User):
+def get_user_forms(user:User):
     return Form.objects.filter(user = user).order_by('-date_posted')
 
 def get_form(id):
