@@ -14,7 +14,8 @@
           <div class="card" style="border-radius: 15px;">
             <div class="card-body p-5">
               <h2 class="text-uppercase text-center mb-5">Form</h2>
-              <form enctype="multipart/form-data" action="/change-approval/{{benefit.id}}" method="post">
+              <form enctype="multipart/form-data" action="/change-approval/{{user_form.id}}" method="post">
+                {% csrf_token %}
                 <div data-mdb-input-init class="form-outline mb-4">
                   <h2>Form Type:</h2>
                   <span>{{user_form.type}}</span>
@@ -24,21 +25,12 @@
                   <a href="{{user_form.file.url}} download">Download form</a>
                 </div>
                 
-                {% if request.user.is_superuser %}
-                <div data-mdb-input-init class="form-outline mb-4">
-                  <h2>Form Status:</h2>
-                  {% if user_form.type == "approved" %}
-                  <span class="badge badge-success">{{user_form.type}}</span>
-                  {% elif user_form.type == "denied" %}
-                  <span class="badge badge-danger">{{user_form.type}}</span>
-                  {% else user_form.type == "pending" %}
-                  <span class="badge badge-warning">{{user_form.type}}</span>
-                  {% endif %}
-                </div>
+                {% if not request.user.is_superuser %}
                 {% else %}
                 <div data-mdb-input-init class="form-outline mb-4">
-                  <label class="form-label" for="form3Example4cdg">Status</label> <select id="form3Example4cdg"
-                    class="form-control form-control-lg">
+                  <label class="form-label" for="form3Example4cdg">Status</label> 
+                  <select id="form3Example4cdg"
+                  class="form-control form-control-lg" name="approval_status">
                     <option value="approved">Approved</option>
                     <option value="pending">Pending</option>
                     <option value="denied">Denied</option>
@@ -48,7 +40,7 @@
 
                 {% if request.user.is_superuser %}
                 <div class="d-flex justify-content-center">
-                  <button type="button" data-mdb-button-init data-mdb-ripple-init
+                  <button type="submit" data-mdb-button-init data-mdb-ripple-init
                     class="btn btn-secondary btn-block btn-lg gradient-custom-4 text-body">Submit</button>
                 </div>
                 {% endif %}

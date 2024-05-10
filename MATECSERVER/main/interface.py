@@ -3,7 +3,7 @@ from django.contrib.auth.models import Group
 
 def register_user(username:str, first_name:str, last_name:str, password:str, phone:str, email:str = None):
     user = User.objects.create_user(username = username, email = email, password = password, first_name = first_name, last_name = last_name)
-    group = Group.objects.get(name='User')
+    group, created = Group.objects.get_or_create(name='User')
     user.groups.add(group)
     profile = User_Profile(user = user, phone = phone)
     profile.save()
@@ -52,13 +52,12 @@ def delete_project(id):
 def check_announcement_exists(id:int):
     return Project.objects.filter(id = id).exists()
 
-def save_project(title, description, location, image, id = None):
+def save_project(title, description, image, id = None):
     temp = None
     
     if id != None:
         temp = Project.objects.get(id = id)
         temp.title = title
-        temp.location = location
         temp.description = description
         temp.thumbnail = image
         temp.save()
@@ -66,7 +65,6 @@ def save_project(title, description, location, image, id = None):
     else:
         temp = Project(
             title = title,
-            location = location,
             description = description,
             thumbnail = image
         )

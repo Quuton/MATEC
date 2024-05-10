@@ -9,10 +9,10 @@ TEMPLATES = {
             'contacts':'contacts.html',
             'about':'about.html',
             'signup':'signup.html',
-            'downloadable_templates':'NONE.html',
+            'downloadable_templates':'downloads.html',
             'announcement':'announcement.html',
             'announcements':'announcements.html',
-            'announcement_add_form':'announcement_add_form.html',
+            'announcement_add_form':'add_announcement.html',
             'announcement_edit_form':'announcement_edit_form.html',
             'projects':'projects.html',
             'project':'project.html',
@@ -20,7 +20,7 @@ TEMPLATES = {
             'project_edit_form':'project_edit_form.html',
             'userforms':'userforms.html',
             'userform':'userform.html',
-            'userform_add_form':'userform_add_form.html',
+            'userform_add_form':'upload_userform.html',
 }
 
 def home(request):
@@ -168,13 +168,12 @@ def add_project(request):
     if (request.method == "POST"):
         title = request.POST['title']
         description = request.POST['description']
-        location = request.POST['location']
 
         image = None
         if request.FILES.get('thumbnail') != None:
             image = request.FILES.get('thumbnail')
 
-        interface.save_project(title, description, location, image)
+        interface.save_project(title, description, image)
         return redirect('/projects/')
     else:
         return render(request, MAIN_PATH + TEMPLATES['project_add_form'])
@@ -222,7 +221,7 @@ def get_userform(request, id: int = None):
         return redirect('/forbidden')
 
 def delete_userform(request, id: int = None):
-    if not (request.user.is_superuser and request.user.is_authenticated):
+    if not (request.user.is_authenticated):
         return redirect('/forbidden')
     
     if not interface.check_form_exists(id):
@@ -232,7 +231,11 @@ def delete_userform(request, id: int = None):
 
     if (request.method == "GET" and id != None and (request.user.is_superuser or request.user == user_form.user)):
         interface.delete_form(id)
-        return redirect('/forms')
+
+        if (request.user.is_superuser):
+            return redirect('/get-pending-userforms')
+        else:
+            return redirect('/my-forms')
     else:
         return redirect('/')
     
@@ -244,27 +247,31 @@ def change_userform_status(request, id:int):
         return redirect('/not-found')
     
     if (request.method == "POST"):
-        interface.change_approval_form(id, request.POST['status'])
-    return redirect(f'/get-userform/{id}')
+        interface.change_approval_form(id, request.POST['approval_status'])
+        return redirect('/get-pending-userforms/')
+    else:
+        return redirect('/')
 
 def add_userform(request):
-    if not (request.user.is_superuser and request.user.is_authenticated):
+    if not (request.user.is_superuser or request.user.is_authenticated):
         return redirect('/forbidden')
 
     if (request.method == "POST"):
-        type = request.POST['type']
+        # type = request.POST['type']
 
         file = None
-        if request.FILES.get('file') != None:
-            file = request.FILES.get('file')
+        if request.FILES.get('form') != None:
+            file = request.FILES.get('form')
+
+
 
         interface.save_form(request.user, type, file)
-        return redirect('/user-forms/')
+        return redirect('/my-forms/')
     else:
         return render(request, MAIN_PATH + TEMPLATES['userform_add_form'])
     
 def get_pending_userforms(request):
-    if not (request.user.is_superuser and request.user.is_authenticated):
+    if not (request.user.is_superuser):
         return redirect('/forbidden')
     
     context = {'forms':interface.get_all_forms()}

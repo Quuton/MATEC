@@ -12,7 +12,7 @@ class Form(models.Model):
         APPROVED = "approved"
         DENIED = "denied"
 
-    user = models.OneToOneField(User, on_delete = models.CASCADE)
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
     type = models.CharField(max_length = 50)
     file = models.FileField(upload_to="documents/forms")
     approval_status = models.CharField(max_length = 10, choices = Approval_Status.choices, default = Approval_Status.PENDING)

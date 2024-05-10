@@ -1,0 +1,42 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block title %}Barangay Bagna{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">{% endblock %}
+{% block content %}
+<main>
+  <div class="container">
+    <div class="panel1">
+      <h2> Downloadable Certificates and Forms</h2>
+      <div class="Forms">
+        <div class="row">
+          <div class="col">
+            <table class="container ">
+              <tr>
+                <th>Form Type</th>
+                <th>Options</th>
+              <tr>
+                <td>Certification</td>
+                <td> <a href="{% static 'documents/Certification.pdf' %}" class="btn btn-outline-info ml-5" download style="margin-right: 40px;">Download</a> </td>
+              </tr>
+              <tr>
+                <td>Barangay Bagna Contacts</td>
+                <td> <a href="{% static 'documents/Barangay-Bagna-Contacts.pdf' %}" class="btn btn-outline-info ml-5" download style="margin-right: 40px;">Download</a> </td>
+              </tr>
+              <tr>
+                <td>Barangay Clearance for Loan Purpose</td>
+                <td> <a href="{% static 'documents/Barangay-Clearance-for-Loan-Purpose.pdf' %}" class="btn btn-outline-info ml-5" download style="margin-right: 40px;">Download</a> </td>
+              </tr>
+              <tr>
+                <td>Pagpapatunay ng Paninirahan</td>
+                <td> <a href="{% static 'documents/Pagpapatunay-ng-Paninirahan.pdf' %}" class="btn btn-outline-info ml-5" download style="margin-right: 40px;">Download</a> </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+{% endblock %}

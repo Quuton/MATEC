@@ -21,12 +21,20 @@
               <p id="announcement-description">{{project.description}}</p>
             </div>
             <i>Posted on: {{project.date_posted}}</i>
+            {% if request.user.is_superuser %}
+            <div class="col-12">
+            <a href="/delete-project/{{project.id}}" class="btn btn-outline-info btn-inline">Delete</a>
+            </div>
+            {% endif %}
           </div>
         </div>
       </div>
       {% empty %}
       <h2>No announcements have been posted yet, check back later!</h2>
       {% endfor %}
+      {% if request.user.is_superuser %}
+      <a href="/add-project/" class="btn btn-outline-info btn-inline">Post an project</a>
+      {% endif %}
     </div>
   </div>
 </main>
