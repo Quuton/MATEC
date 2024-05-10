@@ -9,13 +9,13 @@ A project for some government entity.
 3. Open the console and use the virtual enviroment
 4. Migrate the change through the console.
 ```
-python MATEC/MATECSERVER/manage.py migrate
+python MATECSERVER/manage.py migrate
 ```
 5. Create a super user account
 ```
-python MATEC/MATECSERVER/manage.py createsuperuser
+python MATECSERVER/manage.py createsuperuser
 ```
 6. Run the server
 ```
-python MATEC/MATECSERVER/manage.py runserver
+python MATECSERVER/manage.py runserver
 ```
