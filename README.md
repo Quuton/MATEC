@@ -1,6 +1,5 @@
 # MATEC
-A project for some government entity.
-
+The web project for Barangay Bagna
 
 ## Startup Guide
 
